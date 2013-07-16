@@ -6,7 +6,4 @@
   :dependencies [ [org.clojure/clojure "1.5.1"]
                   [clj-http "0.7.4"]
                   [cheshire "5.2.0"]
-                  [org.clojure/core.incubator "0.1.2" ]
-                  [noir "1.3.0-beta3"]])
-
-;  :main gd-client.app)
+                  [org.clojure/core.incubator "0.1.2" ]])
