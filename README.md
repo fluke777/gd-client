@@ -1,6 +1,6 @@
 # gd_client
 
-A Clojure library designed to ... well, that part is up to you.
+Clojure library designed to help you connect to GoodData and do interesting stuff with the API.
 
 ## Usage
 
