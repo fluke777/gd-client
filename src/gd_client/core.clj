@@ -8,6 +8,16 @@
 (def ^:dynamic *gd-password*)
 (def ^:dynamic *pid* nil)
 
+(defn is-json-response2?
+  [response]
+  (let [format (-> response
+                    (clojure.core/get :headers)
+                    (clojure.core/get "content-type"))]
+    (or
+     (= format "json")
+     (= format "application/json;charset=UTF-8"))))
+
+
 (defn request
   ([method-fun url] (request method-fun url {}))
   ([method-fun url params]
@@ -21,11 +31,10 @@
                        (do
                          (request http/get "/gdc/account/token" {:retry false})
                          (request method-fun url params)))))
-         format (:content-type response)
          body (:body response)]
-     (cond
-      (= format :json) (json/parse-string body true)
-      :else response))))
+     (if (is-json-response2? response)
+       (json/parse-string body true)
+       response))))
 
 (defn post
   ([url]
